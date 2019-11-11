@@ -1,0 +1,42 @@
+security:
+    encoders: #verifie & encode les mot de passe sur ce format 
+        App\Entity\User:
+            algorithm: auto #bonne pratique en revanche attention au nombre de caractere stockée dans entity User pour la propriété password
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        authentication_provider:
+            entity:
+                class: App\Entity\User
+                property: username #note je peux specifier le champs que je souhaite pour m'authentifier
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+
+            provider: authentication_provider # je relie le systeme choisit avec le fournisseur de donnée
+
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                target: / #permet de definir la route vers laquelle rediriger lors de la deconnexio,
+                #invalidate_session: true #invalide la session (pas obligatoire) - @todo verifier si la session est completement supprimer ou juste partiellement(<- comportement par defaut)
+
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

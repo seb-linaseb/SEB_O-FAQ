@@ -1,0 +1,13 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Edit Role{% endblock %}
+
+{% block content %}
+    <h1>Edit Role</h1>
+
+    {{ include('backend/role/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('backend_role_list') }}">back to list</a>
+
+    {{ include('backend/role/_delete_form.html.twig') }}
+{% endblock %}
