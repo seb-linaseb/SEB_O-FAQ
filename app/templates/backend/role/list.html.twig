@@ -1,0 +1,42 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}ROLE LIST{% endblock %}
+
+{% block content %}
+
+    <h1>Rôle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>
+                    {{ role.code }}
+                </td>
+                <td>
+                    {{ role.name }}
+                </td>
+                <td>
+                    <a href="{{ path('backend_role_edit', {'id': role.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('backend_role_new') }}">Create new</a>
+
+
+{% endblock %}

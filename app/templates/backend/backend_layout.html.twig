@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <nav class=" container-fluid nav">
+        <a class="nav-item nav-link"  href="{{ path('backend_role_list') }}"> 
+            ROLE
+        </a>
+        <a class="nav-item nav-link"  href="{{ path('backend_user_list') }}"> 
+            USER
+        </a>
+        <a class="nav-item nav-link"  href="{{ path('backend_question_list') }}"> 
+            QUESTION
+        </a>
+        <a class="nav-item nav-link"  href="{{ path('backend_answer_list') }}"> 
+            ANSWER
+        </a>
+        <a class="nav-item nav-link"  href="{{ path('backend_tag_list') }}"> 
+            TAG
+        </a>
+    </nav>
+{% endblock %}

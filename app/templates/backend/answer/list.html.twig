@@ -1,0 +1,44 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}ANSWER LIST{% endblock %}
+
+{% block content %}
+
+    <h1>Answer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Author</th>
+                <th>Content</th>
+                <th>Blocked</th>
+                <th>Note</th>
+                <th>Préférée</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for answer in answers %}
+            <tr>
+                <td>{{ answer.id }}</td>
+                <td>{{ answer.user.username }}   </td>
+                <td>{{ answer.content }}</td>
+                <td>{{ answer.status ? 'Yes' : 'No' }}</td>
+                <td>{{ answer.rate }}</td>
+                <td>{{ answer.prefered ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{#{{ path('backend_team_edit', {'id': team.id}) }}#}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{#{{ path('backend_team_new') }}#}">Create new</a>
+
+
+{% endblock %}

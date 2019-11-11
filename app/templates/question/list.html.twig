@@ -1,0 +1,40 @@
+{% extends 'frontend_layout.html.twig' %}
+
+{% block title %}QUESTION LIST{% endblock %}
+
+{% block content %}
+
+    <h1>Question index front</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Content</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>
+                    <a href="{{ path('question_show', {'id': question.id}) }}">
+                    {{ question.title }}
+                    </a>
+                </td>
+                <td>{{ question.user.username }}   </td>
+                <td>{{ question.content }}</td>
+                <td>{{ question.rate }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

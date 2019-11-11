@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <nav class=" container-fluid nav">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a class="nav-item nav-link"  href="{{ path('user_show', {'username': app.user.username}) }}"> 
+            USER
+        </a>
+    {% endif %}
+        <a class="nav-item nav-link"  href="{{ path('question_list') }}"> 
+            QUESTION
+        </a>
+    </nav>
+{% endblock %}
